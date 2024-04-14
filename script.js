@@ -17,6 +17,13 @@ generateButton.addEventListener('click', ()=>{
 }); // input custom size 1 - 100
 
 
+function getDarker(color){
+    let colorValues = color.slice(4,color.length - 1).split(',');
+    let red = colorValues[0];
+    let green = colorValues[1];
+    let blue = colorValues[2];
+    return `rgb(${red - `${red/10}`},${green- `${green/10}`},${blue- `${blue/10}`})`;
+}
 
 function rand(){
     return Math.floor(Math.random() * 255);
@@ -38,6 +45,8 @@ function changePartColor(main){
         const elementClass = element.classList.value;
         if(elementClass !== 'main' && element.style.backgroundColor === '' && elementClass !== 'row'){
             element.style.backgroundColor = randomColor();
+        }else if(element.style.backgroundColor){
+            element.style.backgroundColor = getDarker(element.style.backgroundColor);
         }
     })
 }
